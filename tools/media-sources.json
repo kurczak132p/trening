@@ -1,0 +1,664 @@
+{
+  "leg_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Leg_Press",
+    "sourceName": "Leg Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      18276,
+      18098
+    ]
+  },
+  "goblet_squat": {
+    "none": "Only kettlebell goblet squat in dataset (Goblet_Squat holds a kettlebell by the horns); app describes a dumbbell held vertically - equipment mismatch"
+  },
+  "back_squat": {
+    "source": "free-exercise-db",
+    "sourceId": "Barbell_Squat",
+    "sourceName": "Barbell Squat",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      16172,
+      15956
+    ]
+  },
+  "hack_squat": {
+    "source": "free-exercise-db",
+    "sourceId": "Hack_Squat",
+    "sourceName": "Hack Squat",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      25004,
+      24016
+    ]
+  },
+  "db_rdl": {
+    "source": "free-exercise-db",
+    "sourceId": "Stiff-Legged_Dumbbell_Deadlift",
+    "sourceName": "Stiff-Legged Dumbbell Deadlift",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14342,
+      15088
+    ]
+  },
+  "bb_rdl": {
+    "source": "free-exercise-db",
+    "sourceId": "Romanian_Deadlift",
+    "sourceName": "Romanian Deadlift",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11854,
+      11312
+    ]
+  },
+  "deadlift": {
+    "source": "free-exercise-db",
+    "sourceId": "Barbell_Deadlift",
+    "sourceName": "Barbell Deadlift",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14710,
+      14410
+    ]
+  },
+  "back_ext": {
+    "source": "free-exercise-db",
+    "sourceId": "Hyperextensions_Back_Extensions",
+    "sourceName": "Hyperextensions (Back Extensions)",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      15028,
+      14936
+    ]
+  },
+  "hip_thrust": {
+    "source": "free-exercise-db",
+    "sourceId": "Barbell_Hip_Thrust",
+    "sourceName": "Barbell Hip Thrust",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11182,
+      10634
+    ]
+  },
+  "glute_bridge": {
+    "source": "free-exercise-db",
+    "sourceId": "Butt_Lift_Bridge",
+    "sourceName": "Butt Lift (Bridge)",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      9986,
+      10230
+    ]
+  },
+  "split_squat": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Lunges",
+    "sourceName": "Dumbbell Lunges",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11604,
+      13110
+    ]
+  },
+  "walking_lunge": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Lunges",
+    "sourceName": "Dumbbell Lunges",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11604,
+      13110
+    ]
+  },
+  "step_up": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Step_Ups",
+    "sourceName": "Dumbbell Step Ups",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14316,
+      14482
+    ]
+  },
+  "lying_leg_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "Lying_Leg_Curls",
+    "sourceName": "Lying Leg Curls",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      16856,
+      20288
+    ]
+  },
+  "seated_leg_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "Seated_Leg_Curl",
+    "sourceName": "Seated Leg Curl",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      21510,
+      21050
+    ]
+  },
+  "leg_extension": {
+    "source": "free-exercise-db",
+    "sourceId": "Leg_Extensions",
+    "sourceName": "Leg Extensions",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      17940,
+      18232
+    ]
+  },
+  "calf_machine": {
+    "source": "free-exercise-db",
+    "sourceId": "Standing_Calf_Raises",
+    "sourceName": "Standing Calf Raises",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11686,
+      11542
+    ]
+  },
+  "calf_db": {
+    "source": "free-exercise-db",
+    "sourceId": "Standing_Dumbbell_Calf_Raise",
+    "sourceName": "Standing Dumbbell Calf Raise",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10296,
+      10332
+    ]
+  },
+  "calf_leg_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Calf_Press_On_The_Leg_Press_Machine",
+    "sourceName": "Calf Press On The Leg Press Machine",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      17282,
+      17280
+    ]
+  },
+  "db_bench": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Bench_Press",
+    "sourceName": "Dumbbell Bench Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13426,
+      13412
+    ]
+  },
+  "machine_chest_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Machine_Bench_Press",
+    "sourceName": "Machine Bench Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14238,
+      14402
+    ]
+  },
+  "bb_bench": {
+    "source": "free-exercise-db",
+    "sourceId": "Barbell_Bench_Press_-_Medium_Grip",
+    "sourceName": "Barbell Bench Press - Medium Grip",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      15948,
+      15910
+    ]
+  },
+  "incline_db_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Incline_Dumbbell_Press",
+    "sourceName": "Incline Dumbbell Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12370,
+      12410
+    ]
+  },
+  "push_up": {
+    "source": "free-exercise-db",
+    "sourceId": "Pushups",
+    "sourceName": "Pushups",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12280,
+      11796
+    ]
+  },
+  "pec_deck": {
+    "source": "free-exercise-db",
+    "sourceId": "Butterfly",
+    "sourceName": "Butterfly",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      19612,
+      18362
+    ]
+  },
+  "cable_fly": {
+    "source": "free-exercise-db",
+    "sourceId": "Cable_Crossover",
+    "sourceName": "Cable Crossover",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      15100,
+      15478
+    ]
+  },
+  "db_shoulder_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Shoulder_Press",
+    "sourceName": "Dumbbell Shoulder Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13294,
+      13288
+    ]
+  },
+  "machine_shoulder_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Machine_Shoulder_Military_Press",
+    "sourceName": "Machine Shoulder (Military) Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      15794,
+      15596
+    ]
+  },
+  "ohp": {
+    "source": "free-exercise-db",
+    "sourceId": "Standing_Military_Press",
+    "sourceName": "Standing Military Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10340,
+      11146
+    ]
+  },
+  "db_lateral_raise": {
+    "source": "free-exercise-db",
+    "sourceId": "Side_Lateral_Raise",
+    "sourceName": "Side Lateral Raise",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10570,
+      10402
+    ]
+  },
+  "cable_lateral_raise": {
+    "none": "No standing one-arm cable lateral raise in dataset (only seated bent-over two-cable rear-delt variant and dumbbell versions)"
+  },
+  "face_pull": {
+    "source": "free-exercise-db",
+    "sourceId": "Face_Pull",
+    "sourceName": "Face Pull",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11046,
+      13334
+    ]
+  },
+  "reverse_pec_deck": {
+    "source": "free-exercise-db",
+    "sourceId": "Reverse_Machine_Flyes",
+    "sourceName": "Reverse Machine Flyes",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      18948,
+      19282
+    ]
+  },
+  "db_rear_delt_fly": {
+    "source": "free-exercise-db",
+    "sourceId": "Seated_Bent-Over_Rear_Delt_Raise",
+    "sourceName": "Seated Bent-Over Rear Delt Raise",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13504,
+      13352
+    ]
+  },
+  "cable_row": {
+    "source": "free-exercise-db",
+    "sourceId": "Seated_Cable_Rows",
+    "sourceName": "Seated Cable Rows",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12870,
+      13040
+    ]
+  },
+  "db_row": {
+    "source": "free-exercise-db",
+    "sourceId": "One-Arm_Dumbbell_Row",
+    "sourceName": "One-Arm Dumbbell Row",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      15838,
+      15730
+    ]
+  },
+  "machine_row": {
+    "source": "free-exercise-db",
+    "sourceId": "Leverage_Iso_Row",
+    "sourceName": "Leverage Iso Row",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14218,
+      15086
+    ]
+  },
+  "bb_row": {
+    "source": "free-exercise-db",
+    "sourceId": "Bent_Over_Barbell_Row",
+    "sourceName": "Bent Over Barbell Row",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13830,
+      14382
+    ]
+  },
+  "lat_pulldown": {
+    "source": "free-exercise-db",
+    "sourceId": "Wide-Grip_Lat_Pulldown",
+    "sourceName": "Wide-Grip Lat Pulldown",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14828,
+      14842
+    ]
+  },
+  "assisted_pullup": {
+    "none": "No machine-assisted pull-up in dataset (only band-assisted)"
+  },
+  "pull_up": {
+    "source": "free-exercise-db",
+    "sourceId": "Pullups",
+    "sourceName": "Pullups",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      7844,
+      7480
+    ]
+  },
+  "db_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "Dumbbell_Bicep_Curl",
+    "sourceName": "Dumbbell Bicep Curl",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10982,
+      10760
+    ]
+  },
+  "hammer_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "Hammer_Curls",
+    "sourceName": "Hammer Curls",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      9558,
+      9732
+    ]
+  },
+  "cable_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "Standing_Biceps_Cable_Curl",
+    "sourceName": "Standing Biceps Cable Curl",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12746,
+      12814
+    ]
+  },
+  "ez_curl": {
+    "source": "free-exercise-db",
+    "sourceId": "EZ-Bar_Curl",
+    "sourceName": "EZ-Bar Curl",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13474,
+      13782
+    ]
+  },
+  "rope_pushdown": {
+    "source": "free-exercise-db",
+    "sourceId": "Triceps_Pushdown_-_Rope_Attachment",
+    "sourceName": "Triceps Pushdown - Rope Attachment",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      19012,
+      18942
+    ]
+  },
+  "overhead_db_ext": {
+    "source": "free-exercise-db",
+    "sourceId": "Seated_Triceps_Press",
+    "sourceName": "Seated Triceps Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12666,
+      13274
+    ]
+  },
+  "overhead_cable_ext": {
+    "source": "free-exercise-db",
+    "sourceId": "Triceps_Overhead_Extension_with_Rope",
+    "sourceName": "Triceps Overhead Extension with Rope",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14760,
+      14820
+    ]
+  },
+  "plank": {
+    "source": "free-exercise-db",
+    "sourceId": "Plank",
+    "sourceName": "Plank",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      7154,
+      7178
+    ]
+  },
+  "dead_bug": {
+    "none": "Dataset Dead_Bug shows a leg-only variant (both arms stay vertical); app instructs extending the opposite arm and leg - photos would contradict the instructions"
+  },
+  "side_plank": {
+    "source": "free-exercise-db",
+    "sourceId": "Side_Bridge",
+    "sourceName": "Side Bridge",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13390,
+      12260
+    ]
+  },
+  "pallof_press": {
+    "source": "free-exercise-db",
+    "sourceId": "Pallof_Press",
+    "sourceName": "Pallof Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      4584,
+      3284
+    ]
+  },
+  "cable_crunch": {
+    "source": "free-exercise-db",
+    "sourceId": "Cable_Crunch",
+    "sourceName": "Cable Crunch",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12858,
+      12442
+    ]
+  },
+  "bird_dog": {
+    "none": "No bird dog entry in dataset"
+  },
+  "bulgarian_split_squat": {
+    "source": "free-exercise-db",
+    "sourceId": "Split_Squat_with_Dumbbells",
+    "sourceName": "Split Squat with Dumbbells",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      31084,
+      32914
+    ]
+  },
+  "hanging_leg_raise": {
+    "source": "free-exercise-db",
+    "sourceId": "Hanging_Leg_Raise",
+    "sourceName": "Hanging Leg Raise",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10368,
+      11622
+    ]
+  },
+  "db_hip_thrust": {
+    "none": "No dumbbell hip thrust in dataset (only barbell hip thrust / bodyweight bridges)"
+  },
+  "band_lateral_raise": {
+    "source": "free-exercise-db",
+    "sourceId": "Lateral_Raise_-_With_Bands",
+    "sourceName": "Lateral Raise - With Bands",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      10314,
+      11292
+    ]
+  },
+  "db_press_standing": {
+    "source": "free-exercise-db",
+    "sourceId": "Standing_Dumbbell_Press",
+    "sourceName": "Standing Dumbbell Press",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      11290,
+      11448
+    ]
+  },
+  "band_pullup": {
+    "source": "free-exercise-db",
+    "sourceId": "Band_Assisted_Pull-Up",
+    "sourceName": "Band Assisted Pull-Up",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      18738,
+      19902
+    ]
+  },
+  "negative_pullup": {
+    "none": "No negative (eccentric-only) pull-up entry in dataset"
+  },
+  "inverted_row": {
+    "source": "free-exercise-db",
+    "sourceId": "Inverted_Row",
+    "sourceName": "Inverted Row",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12924,
+      13498
+    ]
+  },
+  "band_row": {
+    "none": "No resistance band row entry in dataset"
+  },
+  "diamond_push_up": {
+    "source": "free-exercise-db",
+    "sourceId": "Push-Ups_-_Close_Triceps_Position",
+    "sourceName": "Push-Ups - Close Triceps Position",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      13888,
+      13846
+    ]
+  },
+  "push_up_incline": {
+    "source": "free-exercise-db",
+    "sourceId": "Incline_Push-Up",
+    "sourceName": "Incline Push-Up",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      14870,
+      14576
+    ]
+  },
+  "push_up_decline": {
+    "source": "free-exercise-db",
+    "sourceId": "Push-Ups_With_Feet_Elevated",
+    "sourceName": "Push-Ups With Feet Elevated",
+    "license": "Unlicense",
+    "frames": 2,
+    "bytes": [
+      12158,
+      12106
+    ]
+  }
+}

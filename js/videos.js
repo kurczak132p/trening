@@ -594,6 +594,138 @@ const VIDEOS = {
    "lang": "en"
   }
  },
+ "bulgarian_split_squat": {
+  "yt": "VzNfE7_XCNc",
+  "channel": "Olimp Sport Nutrition",
+  "lang": "pl",
+  "seconds": 56,
+  "start": 0,
+  "backup": {
+   "yt": "fSyiHxm1Igw",
+   "lang": "en"
+  }
+ },
+ "hanging_leg_raise": {
+  "yt": "JNm5q3cUhFo",
+  "channel": "Olimp Sport Nutrition",
+  "lang": "pl",
+  "seconds": 70,
+  "start": 0,
+  "backup": {
+   "yt": "Pr1ieGZ5atk",
+   "lang": "en"
+  }
+ },
+ "db_hip_thrust": {
+  "yt": "Ewi3TgWS7pE",
+  "channel": "Patryk Konicki",
+  "lang": "pl",
+  "seconds": 84,
+  "start": 0,
+  "backup": {
+   "yt": "29OfN4ztW_g",
+   "lang": "en"
+  }
+ },
+ "band_lateral_raise": {
+  "yt": "v-R_p8XZXV8",
+  "channel": "Patryk Konicki",
+  "lang": "pl",
+  "seconds": 32,
+  "start": 0,
+  "backup": {
+   "yt": "kWCmnBS_8uo",
+   "lang": "pl"
+  }
+ },
+ "db_press_standing": {
+  "yt": "7vIggmBVM94",
+  "channel": "Olimp Sport Nutrition",
+  "lang": "pl",
+  "seconds": 56,
+  "start": 0,
+  "backup": {
+   "yt": "k7K84oi4vac",
+   "lang": "pl"
+  }
+ },
+ "band_pullup": {
+  "yt": "GMOmXtKPHs0",
+  "channel": "FinityPL",
+  "lang": "pl",
+  "seconds": 162,
+  "start": 0,
+  "backup": {
+   "yt": "4yE-XGDWJPg",
+   "lang": "en"
+  }
+ },
+ "negative_pullup": {
+  "yt": "gbPURTSxQLY",
+  "channel": "Bodybuilding.com",
+  "lang": "en",
+  "seconds": 62,
+  "start": 0,
+  "backup": {
+   "yt": "3w8Pnbl70SQ",
+   "lang": "en"
+  }
+ },
+ "inverted_row": {
+  "yt": "v4mkZ0MlSRc",
+  "channel": "Radosław Zarzycki - Być jak Herkules",
+  "lang": "pl",
+  "seconds": 71,
+  "start": 14,
+  "backup": {
+   "yt": "8aN3gsL5rQ4",
+   "lang": "pl"
+  }
+ },
+ "band_row": {
+  "yt": "G9hi2-lTkqk",
+  "channel": "Radosław Kojta",
+  "lang": "pl",
+  "seconds": 29,
+  "start": 0,
+  "backup": {
+   "yt": "mnP10HI18uI",
+   "lang": "en"
+  }
+ },
+ "diamond_push_up": {
+  "yt": "8NU0ytSKpCM",
+  "channel": "FitRepublic",
+  "lang": "pl",
+  "seconds": 19,
+  "start": 0,
+  "backup": {
+   "yt": "J0DnG1_S92I",
+   "lang": "en"
+  }
+ },
+ "push_up_incline": {
+  "yt": "YayNBfG-qhU",
+  "channel": "PoTreningu",
+  "lang": "pl",
+  "seconds": 48,
+  "start": 0,
+  "backup": {
+   "yt": "cfns5VDVVvk",
+   "lang": "en"
+  }
+ },
+ "push_up_decline": {
+  "yt": "quBzTlHd7tE",
+  "channel": "Patryk Konicki",
+  "lang": "pl",
+  "seconds": 21,
+  "start": 0,
+  "backup": {
+   "yt": "SKPab2YC8BE",
+   "lang": "en"
+  }
+ },
  "warmup_general": {
   "yt": "m-7Lep1ZP6Y",
   "channel": "CentrumSportowca.pl",

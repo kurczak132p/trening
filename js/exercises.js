@@ -16,7 +16,26 @@ const EQUIPMENT = [
   { id: 'wyciagi', label: 'Wyciągi / linki', hint: 'Np. ściąganie drążka, wiosłowanie siedząc, brama' },
   { id: 'maszyny', label: 'Maszyny', hint: 'Np. suwnica, uginanie nóg, wyciskanie siedząc, ławka rzymska' },
   { id: 'drazek', label: 'Drążek do podciągania', hint: '' },
+  { id: 'guma', label: 'Guma oporowa (taśma)', hint: '' },
 ];
+
+// Sprzęt do wyboru w wywiadzie – osobno dla siłowni i domu
+const EQUIPMENT_BY_PLACE = {
+  silownia: ['sztanga', 'hantle', 'lawka', 'wyciagi', 'maszyny', 'drazek'],
+  dom: ['hantle', 'lawka', 'guma', 'drazek'],
+};
+const EQUIPMENT_HOME_LABELS = {
+  hantle: { label: 'Hantle (najlepiej regulowane)', hint: '' },
+  lawka: { label: 'Ławka albo stabilne krzesło / kanapa', hint: 'Do wiosłowania, hip thrustu, przysiadu bułgarskiego' },
+  guma: { label: 'Guma oporowa (taśma)', hint: '' },
+  drazek: { label: 'Drążek do podciągania', hint: 'Np. w framudze drzwi' },
+};
+
+// Partie mięśniowe do liczenia serii tygodniowo
+const MUSCLES = {
+  klatka: 'Klatka', plecy: 'Plecy', barki: 'Barki', biceps: 'Biceps', triceps: 'Triceps',
+  czworoglowe: 'Przód ud', posladki: 'Pośladki', dwuglowe: 'Tył ud', lydki: 'Łydki', brzuch: 'Brzuch',
+};
 
 const INJURIES = [
   { id: 'ledzwia', label: 'Dolny odcinek pleców (lędźwia)' },
@@ -1042,4 +1061,313 @@ const EXERCISES = {
   },
 };
 
-if (typeof module !== 'undefined') module.exports = { EXERCISES, EQUIPMENT, INJURIES };
+// ───────────── Ćwiczenia dodatkowe: plan domowy i plany ze specyfikacji ─────────────
+Object.assign(EXERCISES, {
+  bulgarian_split_squat: {
+    name: 'Przysiad bułgarski z hantlami', pat: 'lunge', eq: ['hantle', 'lawka'], load: 'db', k: { m: 0.06, f: 0.04 }, perSide: true, lower: true, avoid: ['kolana'],
+    muscles: 'Przód ud, pośladki',
+    note: 'Ciężar to jedna hantla – po jednej w każdej ręce. Na start możesz bez hantli.',
+    setup: [
+      'Stań ok. jednej długości nogi (60–90 cm) przed ławką, tyłem do niej.',
+      'Połóż grzbiet stopy tylnej nogi na ławce. Hantle trzymaj wzdłuż ciała.',
+    ],
+    steps: [
+      'Opuść się pionowo w dół, aż przednie udo będzie mniej więcej równolegle do podłogi.',
+      'Przednie kolano prowadź w linii palców stóp, tułów lekko pochylony do przodu.',
+      'Wstań, napierając całą stopą przedniej nogi.',
+      'Zrób wszystkie powtórzenia jedną nogą, potem zmień nogę.',
+    ],
+    mistakes: [
+      'Stopa za blisko ławki – kolano wyjeżdża daleko do przodu, a pięta się odrywa.',
+      'Przednie kolano uciekające do środka.',
+      'Odpychanie się tylną nogą.',
+      'Za ciężkie hantle przy chwiejnej równowadze.',
+    ],
+  },
+  hanging_leg_raise: {
+    name: 'Unoszenie kolan w zwisie na drążku', pat: 'core', eq: ['drazek'], load: 'bw', unit: 'reps', range: [8, 15], maxTop: 20, avoid: ['barki'],
+    muscles: 'Mięśnie brzucha, zginacze bioder',
+    note: 'Za trudno? Unoś ugięte kolana. Gdy to łatwe – unoś proste nogi.',
+    setup: [
+      'Zawiśnij na drążku nachwytem na szerokość barków.',
+      'Napnij barki (łopatki w dół), nogi razem.',
+    ],
+    steps: [
+      'Unieś kolana w stronę klatki, na końcu lekko podwijając miednicę pod siebie.',
+      'Zatrzymaj na chwilę.',
+      'Powoli opuść nogi, bez bujania.',
+    ],
+    mistakes: [
+      'Bujanie się i wyrzucanie nóg z rozpędu.',
+      'Unoszenie nóg tylko do poziomu bioder, bez podwinięcia miednicy.',
+      'Zbyt szybkie opuszczanie.',
+    ],
+  },
+  db_hip_thrust: {
+    name: 'Hip thrust z hantlą', pat: 'glute', eq: ['hantle', 'lawka'], load: 'db', single: true, k: { m: 0.3, f: 0.25 }, lower: true,
+    muscles: 'Pośladki, tył ud',
+    note: 'Plecy oprzyj o ławkę albo stabilną kanapę. Pod hantlę możesz podłożyć złożony ręcznik.',
+    setup: [
+      'Usiądź na podłodze i oprzyj dolne krawędzie łopatek o ławkę lub kanapę.',
+      'Połóż hantlę poprzecznie na zgięciu bioder i przytrzymaj ją dłońmi.',
+      'Stopy na szerokość bioder, w takiej odległości, by na górze golenie były pionowo.',
+    ],
+    steps: [
+      'Napnij brzuch, broda lekko przy klatce.',
+      'Wypchnij biodra w górę, napierając piętami, aż tułów i uda utworzą linię prostą.',
+      'Ściśnij pośladki na 1 sekundę i powoli opuść biodra.',
+    ],
+    mistakes: [
+      'Wyginanie się w lędźwiach na górze zamiast wyprostu bioder.',
+      'Pchanie palcami zamiast piętami.',
+      'Opieranie się o ruchomy, niestabilny mebel.',
+    ],
+  },
+  band_lateral_raise: {
+    name: 'Unoszenie rąk bokiem z gumą', pat: 'lat_raise', eq: ['guma'], load: 'bw', unit: 'reps', range: [12, 20], maxTop: 25,
+    muscles: 'Boczna część barków',
+    note: 'Opór zwiększysz, stając szerzej na gumie albo biorąc mocniejszą gumę.',
+    setup: [
+      'Stań na środku gumy, końce trzymaj w dłoniach przy bokach.',
+      'Łokcie lekko ugięte, tułów lekko pochylony do przodu.',
+    ],
+    steps: [
+      'Unieś ręce bokiem do wysokości barków, prowadząc ruch łokciami.',
+      'Zatrzymaj na chwilę i powoli opuść.',
+    ],
+    mistakes: [
+      'Bujanie tułowiem.',
+      'Unoszenie barków do uszu.',
+      'Unoszenie rąk wyżej niż barki.',
+    ],
+  },
+  db_press_standing: {
+    name: 'Wyciskanie hantli nad głowę stojąc', pat: 'vpush', eq: ['hantle'], load: 'db', k: { m: 0.09, f: 0.045 }, avoid: ['barki'],
+    muscles: 'Barki, triceps, mięśnie brzucha',
+    note: 'Ciężar to jedna hantla – po jednej w każdej ręce.',
+    setup: [
+      'Stań stopami na szerokość bioder. Hantle na wysokości barków, dłonie skierowane do przodu.',
+      'Napnij pośladki i brzuch.',
+    ],
+    steps: [
+      'Wypchnij hantle w górę, aż ręce będą prawie wyprostowane nad głową (wydech).',
+      'Opuść je powoli do wysokości barków.',
+    ],
+    mistakes: [
+      'Odchylanie się do tyłu i wyginanie lędźwi.',
+      'Pomaganie sobie nogami.',
+      'Uderzanie hantlami o siebie.',
+    ],
+  },
+  band_pullup: {
+    name: 'Podciąganie z gumą asystującą', pat: 'vpull', eq: ['drazek', 'guma'], load: 'bw', unit: 'reps', range: [5, 10], maxTop: 12, avoid: ['barki'], harder: 'pull_up',
+    muscles: 'Najszersze grzbietu, biceps',
+    note: 'Grubsza guma = więcej pomocy. Postęp: cieńsza guma, a w końcu podciąganie bez gumy.',
+    setup: [
+      'Zaczep gumę pętlą o drążek.',
+      'Ze stabilnego podwyższenia wstaw w nią kolano lub stopę i chwyć drążek nachwytem nieco szerzej niż barki.',
+    ],
+    steps: [
+      'Ściągnij łopatki w dół i podciągnij się, aż broda będzie nad drążkiem.',
+      'Powoli opuść się do prawie pełnego wyprostu rąk.',
+    ],
+    mistakes: [
+      'Bujanie się.',
+      'Połowiczny ruch.',
+      'Wchodzenie w gumę bez stabilnego podwyższenia.',
+    ],
+  },
+  negative_pullup: {
+    name: 'Podciąganie negatywne (powolne opuszczanie)', pat: 'vpull', eq: ['drazek'], load: 'bw', unit: 'reps', range: [3, 6], maxTop: 8, avoid: ['barki'], harder: 'pull_up',
+    muscles: 'Najszersze grzbietu, biceps',
+    note: 'Każde opuszczanie ma trwać 3–5 sekund. Gdy zrobisz 6–8 powolnych powtórzeń, spróbuj zwykłego podciągania.',
+    setup: [
+      'Postaw pod drążkiem stabilne krzesło lub skrzynię.',
+      'Chwyć drążek nachwytem nieco szerzej niż barki.',
+    ],
+    steps: [
+      'Wejdź do pozycji z brodą nad drążkiem (z podwyższenia).',
+      'Opuszczaj się jak najwolniej (3–5 s) do pełnego zwisu.',
+      'Stań z powrotem na podwyższeniu i powtórz.',
+    ],
+    mistakes: [
+      'Zbyt szybkie opadanie.',
+      'Zeskakiwanie z wysokości na podłogę.',
+      'Niestabilne podwyższenie.',
+    ],
+  },
+  inverted_row: {
+    name: 'Wiosłowanie odwrócone (pod drążkiem lub stołem)', pat: 'hpull', eq: [], load: 'bw', unit: 'reps', range: [6, 12], maxTop: 15,
+    muscles: 'Plecy, tył barków, biceps',
+    note: 'Tylko pod bardzo stabilnym, ciężkim stołem albo nisko zawieszonym drążkiem. Nie masz pewnego stołu? Zamień na wiosłowanie z gumą. Im bardziej pionowo stoisz, tym łatwiej.',
+    setup: [
+      'Połóż się pod stabilnym stołem (albo nisko zawieszonym drążkiem) i chwyć krawędź na szerokość barków.',
+      'Ciało proste, pięty na podłodze (łatwiej: kolana ugięte, stopy płasko).',
+    ],
+    steps: [
+      'Przyciągnij klatkę do krawędzi stołu lub drążka, ściągając łopatki.',
+      'Ciało przez cały czas w jednej linii.',
+      'Powoli opuść się do wyprostu rąk.',
+    ],
+    mistakes: [
+      'Opadające biodra.',
+      'Ciągnięcie samymi rękami, bez pracy łopatek.',
+      'Niestabilny stół.',
+    ],
+  },
+  band_row: {
+    name: 'Wiosłowanie z gumą', pat: 'hpull', eq: ['guma'], load: 'bw', unit: 'reps', range: [12, 20], maxTop: 25,
+    muscles: 'Plecy, tył barków, biceps',
+    note: 'Opór zwiększysz krótszym chwytem gumy albo mocniejszą gumą.',
+    setup: [
+      'Usiądź z wyprostowanymi nogami i owiń gumę wokół stóp (albo zaczep ją o stabilny punkt na wysokości klatki).',
+      'Chwyć końce gumy, plecy proste.',
+    ],
+    steps: [
+      'Przyciągnij dłonie do brzucha, łokcie blisko tułowia. Ściągnij łopatki.',
+      'Zatrzymaj na chwilę i powoli wróć.',
+    ],
+    mistakes: [
+      'Garbienie się.',
+      'Bujanie tułowiem.',
+      'Szarpanie gumą.',
+    ],
+  },
+  diamond_push_up: {
+    name: 'Pompki diamentowe', pat: 'triceps', eq: [], load: 'bw', unit: 'reps', range: [5, 12], maxTop: 20, avoid: ['nadgarstki'],
+    muscles: 'Triceps, klatka piersiowa',
+    note: 'Za trudno? Rób je z kolan albo z dłońmi opartymi na ławce.',
+    setup: [
+      'Ustaw dłonie blisko siebie pod klatką – kciuki i palce wskazujące tworzą romb.',
+      'Ciało w linii prostej, napięty brzuch.',
+    ],
+    steps: [
+      'Opuść się, prowadząc łokcie blisko tułowia, aż klatka zbliży się do dłoni.',
+      'Wypchnij się do wyprostu rąk.',
+    ],
+    mistakes: [
+      'Łokcie uciekające na boki.',
+      'Opadające biodra.',
+      'Niepełny ruch.',
+    ],
+  },
+  push_up_incline: {
+    name: 'Pompki z dłońmi na podwyższeniu', pat: 'hpush', eq: [], load: 'bw', unit: 'reps', range: [8, 15], maxTop: 20, avoid: ['nadgarstki'], harder: 'push_up',
+    muscles: 'Klatka piersiowa, przód barków, triceps',
+    note: 'Im wyżej dłonie, tym łatwiej. Gdy robisz swobodnie 15 – przejdź na zwykłe pompki.',
+    setup: [
+      'Oprzyj dłonie na stabilnej ławce, skrzyni lub blacie, nieco szerzej niż barki.',
+      'Cofnij nogi, ciało w linii prostej.',
+    ],
+    steps: [
+      'Opuść klatkę do krawędzi podwyższenia, łokcie ok. 45° od tułowia.',
+      'Wypchnij się do wyprostu rąk.',
+    ],
+    mistakes: [
+      'Opadające biodra.',
+      'Łokcie rozłożone na boki.',
+      'Niestabilne podwyższenie.',
+    ],
+  },
+  push_up_decline: {
+    name: 'Pompki ze stopami na podwyższeniu', pat: 'hpush', eq: [], load: 'bw', unit: 'reps', range: [6, 15], maxTop: 20, avoid: ['nadgarstki', 'barki'],
+    muscles: 'Klatka piersiowa (górna część), barki, triceps',
+    note: 'Trudniejsza wersja pompek – dopiero gdy zwykłe robisz swobodnie 15 razy.',
+    setup: [
+      'Oprzyj stopy na ławce lub stabilnym krześle, dłonie na podłodze nieco szerzej niż barki.',
+      'Ciało w linii prostej.',
+    ],
+    steps: [
+      'Opuść się, aż klatka prawie dotknie podłogi. Łokcie ok. 45° od tułowia.',
+      'Wypchnij się do wyprostu rąk.',
+    ],
+    mistakes: [
+      'Opadające biodra.',
+      'Łokcie rozłożone na boki.',
+      'Za wysokie podwyższenie na start.',
+    ],
+  },
+});
+EXERCISES.push_up.easier = 'push_up_incline';
+EXERCISES.push_up.harder = 'push_up_decline';
+
+// ───────────── Wskazówki (3–4 najważniejsze) i liczenie serii na partię ─────────────
+// sc: ile serii ćwiczenie „liczy się” dla partii (1 = bezpośrednio, 0,5 = pomocniczo)
+const SQUAT_SC = { czworoglowe: 1, posladki: 0.5 };
+const LUNGE_SC = { czworoglowe: 1, posladki: 0.5 };
+const HINGE_SC = { dwuglowe: 1, posladki: 1 };
+const PRESS_SC = { klatka: 1, triceps: 0.5 };
+const OHP_SC = { barki: 1, triceps: 0.5 };
+const ROW_SC = { plecy: 1, biceps: 0.5 };
+const CORE_SC = { brzuch: 1 };
+const COACHING = {
+  leg_press: { sc: SQUAT_SC, cues: ['Plecy i pośladki cały czas na oparciu', 'Kolana w linii palców stóp', 'W dół 2–3 s, bez odbijania', 'Na górze nie blokuj kolan'] },
+  goblet_squat: { sc: SQUAT_SC, cues: ['Hantla przy klatce, łokcie w dół', 'Klatka w górę, plecy proste', 'Kolana w linii palców', 'Pięty na podłodze'] },
+  back_squat: { sc: SQUAT_SC, cues: ['Wdech i napnij brzuch przed zejściem', 'Kolana w linii palców', 'Klatka i biodra wznoszą się razem', 'Zawsze z ustawionymi zabezpieczeniami'] },
+  hack_squat: { sc: SQUAT_SC, cues: ['Plecy przyklejone do oparcia', 'Pięty na platformie', 'Kolana w linii palców', 'Na górze nie blokuj kolan'] },
+  db_rdl: { sc: HINGE_SC, cues: ['Biodra do tyłu – „zamknij pośladkami drzwi za sobą”', 'Kolana lekko ugięte i nieruchome', 'Hantle blisko nóg', 'Plecy proste, schodź do rozciągnięcia'] },
+  bb_rdl: { sc: HINGE_SC, cues: ['Napnij brzuch, zamknij żebra', 'Biodra do tyłu', 'Sztanga sunie po udach', 'Kolana lekko ugięte, nieruchome'] },
+  deadlift: { sc: { posladki: 1, dwuglowe: 0.5, plecy: 0.5 }, cues: ['Sztanga nad środkiem stopy, blisko goleni', 'Plecy proste, napięty brzuch', 'Pchaj podłogę nogami', 'Na górze bez odchylania się'] },
+  back_ext: { sc: { posladki: 0.5, dwuglowe: 0.5 }, cues: ['Ruch z bioder, plecy proste', 'Na górze linia prosta – bez przeprostu', 'Spokojne tempo'] },
+  hip_thrust: { sc: { posladki: 1 }, cues: ['Broda lekko przy klatce', 'Napieraj piętami', 'Na górze ściśnij pośladki, bez wyginania lędźwi', 'Na górze golenie pionowo'] },
+  db_hip_thrust: { sc: { posladki: 1 }, cues: ['Napieraj piętami', 'Na górze ściśnij pośladki', 'Bez wyginania lędźwi'] },
+  glute_bridge: { sc: { posladki: 1 }, cues: ['Pchaj piętami', 'Ściśnij pośladki na górze', 'Bez wyginania lędźwi'] },
+  split_squat: { sc: LUNGE_SC, cues: ['Stopy jak na torach, nie na jednej linii', 'Schodź pionowo w dół', 'Przednie kolano nad stopą', 'Napieraj przednią nogą'] },
+  walking_lunge: { sc: LUNGE_SC, cues: ['Długi krok', 'Tylne kolano prawie do podłogi', 'Przednie kolano w linii palców', 'Tułów wyprostowany'] },
+  step_up: { sc: LUNGE_SC, cues: ['Cała stopa na ławce', 'Wchodź siłą przedniej nogi', 'Nie odbijaj się tylną nogą', 'Schodź powoli'] },
+  bulgarian_split_squat: { sc: LUNGE_SC, cues: ['Ciężar na przedniej nodze', 'Schodź pionowo w dół', 'Kolano w linii palców', 'Tylna noga tylko dla równowagi'] },
+  lying_leg_curl: { sc: { dwuglowe: 1 }, cues: ['Biodra dociśnięte do ławki', 'Bez szarpania', 'W dół 2–3 s'] },
+  seated_leg_curl: { sc: { dwuglowe: 1 }, cues: ['Docisk mocno na udach', 'Pełny ruch', 'Wracaj powoli'] },
+  leg_extension: { sc: { czworoglowe: 1 }, cues: ['Kolana w osi maszyny', 'Pauza na górze', 'W dół 2–3 s, bez kopania'] },
+  calf_machine: { sc: { lydki: 1 }, cues: ['Pełne rozciągnięcie na dole', 'Pauza 1 s na dole i na górze', 'Bez sprężynowania', 'Kolana proste, ale nie zablokowane'] },
+  calf_db: { sc: { lydki: 1 }, cues: ['Pełne rozciągnięcie na dole', 'Pauza 1 s na dole i na górze', 'Bez sprężynowania'] },
+  calf_leg_press: { sc: { lydki: 1 }, cues: ['Stopy pewnie na platformie', 'Kolana się nie ruszają', 'Pełny zakres, bez odbijania'] },
+  db_bench: { sc: PRESS_SC, cues: ['Łopatki ściągnięte i wbite w ławkę', 'Łokcie ok. 45° od tułowia', 'W dół 2–3 s do wysokości klatki', 'Stopy płasko na podłodze'] },
+  machine_chest_press: { sc: PRESS_SC, cues: ['Uchwyty na wysokości środka klatki', 'Łopatki ściągnięte, plecy na oparciu', 'Nie blokuj łokci', 'Nie odkładaj ciężaru między powtórzeniami'] },
+  bb_bench: { sc: PRESS_SC, cues: ['Łopatki ściągnięte i w dół', 'Sztanga na dolną część klatki', 'Bez odbijania od klatki', 'Asekuracja lub zabezpieczenia'] },
+  incline_db_press: { sc: { klatka: 1, triceps: 0.5, barki: 0.5 }, cues: ['Ławka ok. 30°', 'Łokcie ok. 45° od tułowia', 'Hantle do górnej części klatki', 'Pośladki na ławce'] },
+  push_up: { sc: PRESS_SC, cues: ['Ciało w jednej linii', 'Napięty brzuch i pośladki', 'Łokcie ok. 45°', 'Klatka prawie do podłogi'] },
+  push_up_incline: { sc: PRESS_SC, cues: ['Ciało w jednej linii', 'Łokcie ok. 45°', 'Klatka do krawędzi podwyższenia'] },
+  push_up_decline: { sc: { klatka: 1, triceps: 0.5, barki: 0.5 }, cues: ['Ciało w jednej linii', 'Łokcie ok. 45°', 'Napięty brzuch'] },
+  diamond_push_up: { sc: { triceps: 1, klatka: 0.5 }, cues: ['Łokcie blisko tułowia', 'Ciało w jednej linii', 'Pełny ruch'] },
+  pec_deck: { sc: { klatka: 1 }, cues: ['Łokcie lekko ugięte – bez zmian', 'Ściśnij klatkę z przodu', 'Do tyłu nie dalej niż linia barków'] },
+  cable_fly: { sc: { klatka: 1 }, cues: ['Łokcie lekko ugięte – bez zmian', 'Ruch łukiem', 'Do tyłu nie dalej niż linia barków'] },
+  db_shoulder_press: { sc: OHP_SC, cues: ['Plecy przy oparciu', 'Łokcie lekko przed tułowiem', 'W dół do wysokości brody/uszu', 'Bez wyginania lędźwi'] },
+  machine_shoulder_press: { sc: OHP_SC, cues: ['Uchwyty na wysokości barków', 'Plecy przy oparciu', 'Nie blokuj łokci'] },
+  ohp: { sc: OHP_SC, cues: ['Napnij pośladki i brzuch', 'Gryf blisko twarzy', 'Na górze głowa „pod sztangą”', 'Bez odchylania się'] },
+  db_press_standing: { sc: OHP_SC, cues: ['Napnij pośladki i brzuch', 'Bez odchylania się', 'W dół powoli do barków'] },
+  db_lateral_raise: { sc: { barki: 1 }, cues: ['Lekkie hantle', 'Unoś do wysokości barków', 'Prowadź łokciami', 'W dół 2–3 s, bez bujania'] },
+  cable_lateral_raise: { sc: { barki: 1 }, cues: ['Unoś do wysokości barku', 'Bark z dala od ucha', 'Bez odchylania tułowia'] },
+  band_lateral_raise: { sc: { barki: 1 }, cues: ['Do wysokości barków', 'Prowadź łokciami', 'Powoli w dół'] },
+  face_pull: { sc: { barki: 1, plecy: 0.5 }, cues: ['Linka do twarzy, łokcie wysoko', 'Na końcu dłonie na zewnątrz', 'Bez odchylania się'] },
+  reverse_pec_deck: { sc: { barki: 1, plecy: 0.5 }, cues: ['Klatka przy oparciu', 'Ręce łukiem na boki', 'Barki z dala od uszu'] },
+  db_rear_delt_fly: { sc: { barki: 1, plecy: 0.5 }, cues: ['Tułów prawie równolegle do podłogi', 'Plecy proste', 'Lekkie hantle, bez rzucania'] },
+  cable_row: { sc: ROW_SC, cues: ['Tułów nieruchomo, plecy proste', 'Uchwyt do brzucha', 'Ściągnij łopatki', 'Wracaj powoli'] },
+  db_row: { sc: ROW_SC, cues: ['Plecy proste, równolegle do podłogi', 'Ciągnij w stronę biodra', 'Bez skręcania tułowia'] },
+  machine_row: { sc: ROW_SC, cues: ['Klatka cały czas na poduszce', 'Łokcie do tyłu', 'Ściągnij łopatki'] },
+  bb_row: { sc: ROW_SC, cues: ['Tułów ok. 45°, plecy proste', 'Sztanga do brzucha', 'Tułów się nie podnosi'] },
+  inverted_row: { sc: ROW_SC, cues: ['Ciało w jednej linii', 'Klatka do drążka', 'Ściągnij łopatki'] },
+  band_row: { sc: ROW_SC, cues: ['Plecy proste', 'Łokcie blisko tułowia', 'Ściągnij łopatki'] },
+  lat_pulldown: { sc: ROW_SC, cues: ['Drążek do górnej części klatki', 'Łokcie w dół i do tyłu', 'Barki z dala od uszu', 'Bez bujania'] },
+  assisted_pullup: { sc: ROW_SC, cues: ['Więcej ciężaru = więcej pomocy', 'Broda nad drążek', 'Opuszczaj się powoli'] },
+  pull_up: { sc: ROW_SC, cues: ['Napięty brzuch i pośladki', 'Łopatki w dół', 'Broda nad drążek', 'Pełny zwis na dole'] },
+  band_pullup: { sc: ROW_SC, cues: ['Łopatki w dół', 'Broda nad drążek', 'Opuszczaj powoli'] },
+  negative_pullup: { sc: ROW_SC, cues: ['3–5 s w dół', 'Łopatki w dół', 'Pełny zwis na dole'] },
+  db_curl: { sc: { biceps: 1 }, cues: ['Łokcie przy tułowiu', 'Bez bujania', 'W dół do pełnego wyprostu'] },
+  hammer_curl: { sc: { biceps: 1 }, cues: ['Kciuki w górę', 'Łokcie przy tułowiu', 'Bez bujania'] },
+  cable_curl: { sc: { biceps: 1 }, cues: ['Łokcie przy tułowiu', 'Bez odchylania się', 'Pełny wyprost na dole'] },
+  ez_curl: { sc: { biceps: 1 }, cues: ['Chwyt na wygiętych częściach', 'Łokcie przy tułowiu', 'Bez bujania'] },
+  rope_pushdown: { sc: { triceps: 1 }, cues: ['Łokcie przy bokach – nieruchomo', 'Na dole rozsuń linkę', 'Wracaj powoli'] },
+  overhead_db_ext: { sc: { triceps: 1 }, cues: ['Łokcie blisko głowy', 'Opuszczaj powoli', 'Bez wyginania lędźwi'] },
+  overhead_cable_ext: { sc: { triceps: 1 }, cues: ['Łokcie przy głowie', 'Ruch tylko w łokciach', 'Wracaj powoli'] },
+  plank: { sc: CORE_SC, cues: ['Ciało w jednej linii', 'Napnij brzuch i pośladki', 'Oddychaj spokojnie'] },
+  dead_bug: { sc: CORE_SC, cues: ['Lędźwia przyklejone do podłogi', 'Przeciwna ręka i noga', 'Powoli, z wydechem'] },
+  side_plank: { sc: CORE_SC, cues: ['Łokieć pod barkiem', 'Biodra w górze, ciało w linii', 'Bez obracania tułowia'] },
+  pallof_press: { sc: CORE_SC, cues: ['Nie daj się obrócić', 'Ręce przed siebie, pauza 2 s', 'Kolana lekko ugięte'] },
+  cable_crunch: { sc: CORE_SC, cues: ['Biodra nieruchomo', 'Zwijaj tułów, łokcie do ud', 'Wydech przy zwijaniu'] },
+  bird_dog: { sc: CORE_SC, cues: ['Przeciwna ręka i noga', 'Biodra się nie obracają', 'Pauza 2 s'] },
+  hanging_leg_raise: { sc: CORE_SC, cues: ['Bez bujania', 'Podwiń miednicę pod siebie', 'Opuszczaj powoli'] },
+};
+for (const [id, c] of Object.entries(COACHING)) Object.assign(EXERCISES[id], c);
+
+if (typeof module !== 'undefined') module.exports = { EXERCISES, EQUIPMENT, EQUIPMENT_BY_PLACE, EQUIPMENT_HOME_LABELS, INJURIES, MUSCLES };
