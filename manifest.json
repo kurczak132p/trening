@@ -1,0 +1,17 @@
+{
+  "name": "Mój Trening – plan na siłownię",
+  "short_name": "Trening",
+  "description": "Plan treningowy na siłownię dopasowany do Ciebie – z filmami i prowadzeniem krok po kroku.",
+  "lang": "pl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#17191f",
+  "theme_color": "#17191f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
