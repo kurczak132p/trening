@@ -29,29 +29,31 @@ const Engine = (() => {
     fA_squat: { p0: ['goblet_squat', 'back_squat', 'leg_press', 'hack_squat'], p1: ['back_squat', 'goblet_squat', 'leg_press', 'hack_squat'], fb: ['glute'], g: ['nogi'], role: 'main', sets: 3, reps: [6, 10], rir: [2, 3], rest: 150 },
     fA_press: { p0: ['db_bench', 'machine_chest_press', 'bb_bench', 'push_up'], g: ['klatka'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
     fA_row: { p0: ['cable_row', 'machine_row', 'db_row', 'bb_row'], fb: ['hpull'], g: ['plecy'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
-    fA_rdl: { p0: ['db_rdl', 'bb_rdl', 'hip_thrust', 'glute_bridge'], fb: ['glute'], g: ['nogi'], role: 'main', sets: 2, reps: [8, 12], rir: [2, 3], rest: 120 },
-    fA_lat: { p0: ['db_lateral_raise', 'cable_lateral_raise', 'band_lateral_raise'], g: ['barki'], role: 'acc', sets: 2, reps: [12, 15], rir: [1, 2], rest: 60 },
+    fA_rdl: { p0: ['db_rdl', 'bb_rdl', 'hip_thrust', 'glute_bridge'], fb: ['glute'], g: ['nogi'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 3], rest: 120 },
+    fA_lat: { p0: ['db_lateral_raise', 'cable_lateral_raise', 'band_lateral_raise'], g: ['barki'], role: 'acc', sets: 2, reps: [12, 15], rir: [1, 2], rest: 60, ss: 'S' },
+    fA_tri: { p0: ['rope_pushdown', 'overhead_cable_ext', 'overhead_db_ext', 'diamond_push_up'], g: ['ramiona'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'S' },
     fA_core: { p0: ['plank', 'dead_bug', 'bird_dog'], g: ['brzuch'], role: 'acc', sets: 2, ranges: { plank: [30, 45], dead_bug: [8, 10], bird_dog: [8, 10] }, rir: [1, 2], rest: 60 },
     fB_hinge: { p0: ['bb_rdl', 'hip_thrust', 'db_rdl', 'glute_bridge'], fb: ['glute', 'hinge'], g: ['nogi'], role: 'main', sets: 3, reps: [6, 10], rir: [2, 3], rest: 150 },
     fB_pull: { p0: ['lat_pulldown', 'assisted_pullup', 'band_pullup', 'negative_pullup'], p2: ['pull_up', 'lat_pulldown', 'assisted_pullup'], fb: ['hpull'], g: ['plecy'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
     fB_ohp: { p0: ['db_shoulder_press', 'machine_shoulder_press', 'db_press_standing', 'ohp'], fb: ['rear_delt'], g: ['barki'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
-    fB_lunge: { p0: ['walking_lunge', 'split_squat', 'bulgarian_split_squat', 'step_up', 'leg_press'], p1: ['bulgarian_split_squat', 'walking_lunge', 'split_squat', 'step_up', 'leg_press'], fb: ['squat'], g: ['nogi'], role: 'acc', sets: 2, reps: [8, 12], rir: [2, 2], rest: 90 },
-    fB_curl: { p0: ['db_curl', 'cable_curl', 'hammer_curl', 'ez_curl'], g: ['ramiona'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'R' },
-    fB_tri: { p0: ['rope_pushdown', 'overhead_cable_ext', 'overhead_db_ext', 'diamond_push_up'], g: ['ramiona'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'R' },
+    fB_incl: { p0: ['incline_db_press', 'machine_chest_press', 'push_up', 'db_bench'], g: ['klatka'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
+    fB_lunge: { p0: ['walking_lunge', 'split_squat', 'bulgarian_split_squat', 'step_up', 'leg_press'], p1: ['bulgarian_split_squat', 'walking_lunge', 'split_squat', 'step_up', 'leg_press'], fb: ['squat'], g: ['nogi'], role: 'acc', sets: 3, reps: [8, 12], rir: [2, 2], rest: 90 },
+    fB_curl: { p0: ['db_curl', 'cable_curl', 'hammer_curl', 'ez_curl'], g: ['ramiona'], role: 'acc', sets: 3, reps: [10, 15], rir: [1, 2], rest: 60 },
     fB_core: { p0: ['pallof_press', 'cable_crunch', 'side_plank', 'dead_bug'], g: ['brzuch'], role: 'acc', sets: 2, reps: [10, 12], ranges: { side_plank: [20, 40], dead_bug: [8, 10] }, rir: [1, 2], rest: 60 },
 
     // Full Body 3× – dom (spec. 1.5, plan B)
     hA_squat: { p0: ['goblet_squat'], fb: ['lunge', 'glute'], g: ['nogi'], role: 'main', sets: 3, reps: [8, 15], rir: [2, 3], rest: 120 },
     hA_push: { p0: ['push_up_incline', 'push_up'], p1: ['push_up', 'push_up_incline'], g: ['klatka'], role: 'main', sets: 3, reps: [6, 15], rir: [2, 2], rest: 90 },
     hA_row: { p0: ['db_row', 'band_row', 'inverted_row'], fb: ['hpull'], g: ['plecy'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 90 },
-    hA_glute: { p0: ['db_hip_thrust', 'glute_bridge'], g: ['nogi'], role: 'acc', sets: 3, reps: [10, 15], rir: [2, 2], rest: 90 },
-    hA_lat: { p0: ['band_lateral_raise', 'db_lateral_raise'], g: ['barki'], role: 'acc', sets: 2, reps: [12, 15], rir: [1, 2], rest: 60 },
+    hA_rdl: { p0: ['db_rdl', 'db_hip_thrust', 'glute_bridge'], fb: ['glute'], g: ['nogi'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 3], rest: 120 },
+    hA_lat: { p0: ['band_lateral_raise', 'db_lateral_raise'], g: ['barki'], role: 'acc', sets: 3, reps: [12, 15], rir: [1, 2], rest: 60 },
     hA_core: { p0: ['dead_bug', 'plank', 'bird_dog'], g: ['brzuch'], role: 'acc', sets: 2, ranges: { dead_bug: [8, 10], plank: [30, 45], bird_dog: [8, 10] }, rir: [1, 2], rest: 60 },
     hB_lunge: { p0: ['bulgarian_split_squat', 'split_squat', 'walking_lunge'], fb: ['squat', 'glute'], g: ['nogi'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 120 },
     hB_ohp: { p0: ['db_press_standing', 'db_shoulder_press'], fb: ['lat_raise'], g: ['barki'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 2], rest: 90 },
     hB_pull: { p0: ['band_pullup', 'negative_pullup', 'inverted_row', 'band_row'], p2: ['pull_up', 'band_pullup', 'negative_pullup', 'inverted_row'], fb: ['hpull'], g: ['plecy'], role: 'main', sets: 3, reps: [5, 10], rir: [2, 2], rest: 120 },
     hB_rdl: { p0: ['db_rdl', 'db_hip_thrust', 'glute_bridge'], fb: ['glute'], g: ['nogi'], role: 'main', sets: 3, reps: [8, 12], rir: [2, 3], rest: 120 },
-    hB_curl: { p0: ['db_curl', 'hammer_curl'], g: ['ramiona'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'R' },
+    hB_push: { p0: ['push_up_incline', 'push_up'], p1: ['push_up', 'push_up_incline'], p2: ['push_up_decline', 'push_up'], g: ['klatka'], role: 'main', sets: 3, reps: [6, 15], rir: [2, 2], rest: 90 },
+    hB_curl: { p0: ['db_curl', 'hammer_curl'], g: ['ramiona'], role: 'acc', sets: 3, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'R' },
     hB_tri: { p0: ['diamond_push_up', 'overhead_db_ext'], g: ['ramiona'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 60, ss: 'R' },
     hB_core: { p0: ['side_plank', 'plank', 'dead_bug'], g: ['brzuch'], role: 'acc', sets: 2, ranges: { side_plank: [20, 40], plank: [30, 45], dead_bug: [8, 10] }, rir: [1, 2], rest: 60 },
 
@@ -93,6 +95,7 @@ const Engine = (() => {
     x_rear: { p0: ['face_pull', 'reverse_pec_deck', 'db_rear_delt_fly'], g: ['barki', 'plecy'], role: 'acc', sets: 2, reps: [12, 15], rir: [1, 2], rest: 60 },
     x_lat: { p0: ['db_lateral_raise', 'cable_lateral_raise', 'band_lateral_raise'], g: ['barki'], role: 'acc', sets: 2, reps: [12, 15], rir: [1, 2], rest: 60 },
     x_row: { p0: ['db_row', 'machine_row', 'cable_row', 'band_row'], g: ['plecy'], role: 'acc', sets: 2, reps: [8, 12], rir: [1, 2], rest: 90 },
+    x_glute: { p0: ['db_hip_thrust', 'hip_thrust', 'glute_bridge'], g: ['nogi'], role: 'acc', sets: 2, reps: [10, 15], rir: [1, 2], rest: 75 },
     x_core: { p0: ['hanging_leg_raise', 'cable_crunch', 'side_plank'], g: ['brzuch'], role: 'acc', sets: 2, reps: [8, 15], rir: [1, 2], rest: 60 },
   };
 
@@ -101,15 +104,15 @@ const Engine = (() => {
     fbw_gym: {
       name: 'Full Body 3× – siłownia (A/B naprzemiennie)', kind: 'fbw',
       days: [
-        day('A', 'Trening A', 'Całe ciało', ['fA_squat', 'fA_press', 'fA_row', 'fA_rdl', 'fA_lat', 'fA_core'], ['x_chest', 'x_tri', 'x_legcurl', 'x_rear']),
-        day('B', 'Trening B', 'Całe ciało', ['fB_hinge', 'fB_pull', 'fB_ohp', 'fB_lunge', 'fB_curl', 'fB_tri', 'fB_core'], ['x_press', 'x_calf', 'x_lat', 'x_row', 'x_core']),
+        day('A', 'Trening A', 'Całe ciało', ['fA_squat', 'fA_press', 'fA_row', 'fA_rdl', 'fA_lat', 'fA_tri', 'fA_core'], ['x_chest', 'x_legcurl', 'x_rear', 'x_bic']),
+        day('B', 'Trening B', 'Całe ciało', ['fB_hinge', 'fB_pull', 'fB_ohp', 'fB_incl', 'fB_lunge', 'fB_curl', 'fB_core'], ['x_tri', 'x_calf', 'x_lat', 'x_row', 'x_core']),
       ],
     },
     fbw_home: {
       name: 'Full Body 3× – dom (A/B naprzemiennie)', kind: 'fbw',
       days: [
-        day('A', 'Trening A', 'Całe ciało', ['hA_squat', 'hA_push', 'hA_row', 'hA_glute', 'hA_lat', 'hA_core'], ['x_tri', 'x_calf']),
-        day('B', 'Trening B', 'Całe ciało', ['hB_lunge', 'hB_ohp', 'hB_pull', 'hB_rdl', 'hB_curl', 'hB_tri', 'hB_core'], ['x_press', 'x_lat', 'x_core']),
+        day('A', 'Trening A', 'Całe ciało', ['hA_squat', 'hA_push', 'hA_row', 'hA_rdl', 'hA_lat', 'hA_core'], ['x_glute', 'x_tri', 'x_calf']),
+        day('B', 'Trening B', 'Całe ciało', ['hB_lunge', 'hB_ohp', 'hB_pull', 'hB_rdl', 'hB_push', 'hB_curl', 'hB_tri', 'hB_core'], ['x_glute', 'x_lat', 'x_core']),
       ],
     },
     ul4: {
@@ -123,6 +126,7 @@ const Engine = (() => {
     },
   };
 
+  const PLAN_VERSION = 2; // podbij, gdy zmieniają się szablony – zapisane plany ułożą się od nowa
   const BUDGET_MIN = { 45: 35, 60: 50, 75: 65 }; // minuty na ćwiczenia (bez ~10 min rozgrzewki ogólnej)
 
   // ─── Pomocnicze ───
@@ -323,78 +327,132 @@ const Engine = (() => {
     return 'fbw_gym';
   }
 
+  // Serie na partię tygodniowo dla zestawu dni (każdy dzień robiony strengthDays / liczba dni razy w tygodniu)
+  function coverage(days, strengthDays) {
+    const out = {};
+    const perDay = strengthDays / days.length;
+    for (const d of days) for (const it of d.items) {
+      for (const [m, f] of Object.entries(EX[it.exId].sc || {})) out[m] = (out[m] || 0) + it.sets * f * perDay;
+    }
+    return out;
+  }
+
+  // Minimalna liczba serii na partię, której pilnujemy przy przycinaniu do czasu
+  function volumeFloor(p) {
+    const big = p.exp >= 2 ? 10 : 8;
+    const t = { brzuch: 4 };
+    for (const m of ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworoglowe', 'posladki', 'dwuglowe']) t[m] = big;
+    return t;
+  }
+
+  const COMPOUND = new Set(['squat', 'hinge', 'glute', 'lunge', 'hpush', 'vpush', 'hpull', 'vpull']);
+
+  function deficit(cov, floor) {
+    let d = 0;
+    for (const [m, lo] of Object.entries(floor)) d += Math.max(0, lo - (cov[m] || 0));
+    return d;
+  }
+
   function generatePlan(p) {
     const tk = templateKey(p);
     const tpl = TEMPLATES[tk];
     const budget = BUDGET_MIN[p.duration] * 60;
     const prio = new Set(p.priorities || []);
     const isPrio = k => S[k].g.some(x => prio.has(x));
+    const cardioDay = tk !== 'ul4' && p.days >= 4;
+    const strengthDays = cardioDay ? 3 : p.days;
+    const floor = volumeFloor(p);
 
-    const days = tpl.days.map(d => {
+    const useds = [];
+    const build = (k, used) => {
+      const exId = chooseFor(k, p, used);
+      if (!exId) return null;
+      used.add(exId);
+      const it = itemFor(k, exId, p);
+      it.alts = slotAlternatives(k, p);
+      return it;
+    };
+    const unpair = items => items.forEach((it, i) => {
+      if (it.ss && !items.some((o, j) => j !== i && o.ss === it.ss)) it.ss = null;
+    });
+
+    const days = tpl.days.map((d, di) => {
       const used = new Set();
-      let items = [];
-      const trimmed = [];
-      const build = k => {
-        const exId = chooseFor(k, p, used);
-        if (!exId) return null;
-        used.add(exId);
-        const it = itemFor(k, exId, p);
-        it.alts = slotAlternatives(k, p);
-        return it;
-      };
-      d.items.forEach(k => { const it = build(k); if (it) items.push(it); });
-      // superseria bez pary → zwykłe ćwiczenie
-      items.forEach((it, i) => {
-        if (it.ss && !items.some((o, j) => j !== i && o.ss === it.ss)) it.ss = null;
-      });
+      useds[di] = used;
+      const items = [];
+      d.items.forEach(k => { const it = build(k, used); if (it) items.push(it); });
+      unpair(items);
+      return { key: d.key, name: d.name, focus: d.focus, items, trimmed: [] };
+    });
 
-      // Za długo → najpierw krótsze przerwy (dolna granica), potem bez dodatków, potem mniej serii
-      const fits = () => estSeconds(items) <= budget;
-      if (!fits()) items.forEach(it => { it.rest = it.role === 'main' ? Math.min(it.rest, 120) : Math.min(it.rest, 60); });
-      const dropOrder = () => {
-        for (let i = items.length - 1; i >= 0; i--) {
-          const it = items[i];
-          if (it.role === 'main') continue;
-          if (EX[it.exId].pat === 'core') return i;
+    // Za długo → najpierw przerwy do dolnej granicy (2 min wielostawowe, 1 min pozostałe)
+    for (const d of days) {
+      if (estSeconds(d.items) > budget) d.items.forEach(it => { it.rest = it.role === 'main' ? Math.min(it.rest, 120) : Math.min(it.rest, 60); });
+    }
+    // Potem po jednej serii (albo całe ćwiczenie pomocnicze) tam, gdzie najmniej szkodzi to objętości tygodniowej
+    const stuck = new Set(), stuckSoft = new Set();
+    for (let guard = 0; guard < 200; guard++) {
+      const over = days.map((d, i) => stuck.has(i) ? -Infinity : estSeconds(d.items) - budget);
+      const di = over.indexOf(Math.max(...over));
+      if (over[di] <= 0) break;
+      const d = days[di];
+      const t0 = estSeconds(d.items), def0 = deficit(coverage(days, strengthDays), floor);
+      let best = null;
+      // kara za ruszanie ćwiczeń wielostawowych – główne boje skracamy na końcu (spec. 1.2: kluczowe boje na początku i w pełnej objętości)
+      const consider = (apply, undo, label, mainPenalty) => {
+        apply();
+        const saved = t0 - estSeconds(d.items);
+        const dd = deficit(coverage(days, strengthDays), floor) - def0;
+        undo();
+        if (saved <= 0) return;
+        const score = (dd + (mainPenalty || 0)) / saved;
+        if (!best || score < best.score - 1e-9 || (Math.abs(score - best.score) < 1e-9 && saved > best.saved)) best = { score, saved, apply, label };
+      };
+      const allowMain = !!stuckSoft.has(di);
+      d.items.forEach((it, i) => {
+        const compound = it.role === 'main' || COMPOUND.has(EX[it.exId].pat);
+        const min = it.role === 'main' ? 2 : 1;
+        if (it.sets > min) consider(() => { it.sets--; }, () => { it.sets++; }, null, compound ? 1 : 0);
+        if (it.role !== 'main' || (allowMain && i > 0)) {
+          const group = it.ss ? d.items.filter(o => o.ss === it.ss) : [it];
+          const before = d.items.slice();
+          consider(() => { d.items = d.items.filter(o => !group.includes(o)); }, () => { d.items = before; }, group, 2 + (compound ? 1 : 0));
         }
-        for (let i = items.length - 1; i >= 0; i--) if (items[i].role !== 'main') return i;
-        return -1;
-      };
-      while (!fits()) {
-        const i = dropOrder();
-        if (i < 0) break;
-        const it = items[i];
-        const removed = it.ss ? items.filter(o => o.ss === it.ss) : [it];
-        removed.forEach(r => trimmed.push(r.exId));
-        items = items.filter(o => !removed.includes(o));
+      });
+      if (!best) {
+        // ostateczność: można odpuścić także ćwiczenie wielostawowe (nigdy pierwsze w dniu)
+        if (!stuckSoft.has(di)) stuckSoft.add(di); else stuck.add(di);
+        continue;
       }
-      for (let i = items.length - 1; i >= 0 && !fits(); i--) {
-        if (items[i].sets > 2) { items[i].sets -= 1; i++; }
-      }
+      best.apply();
+      if (best.label) best.label.forEach(r => { d.trimmed.push(r.exId); useds[di].delete(r.exId); });
+      unpair(d.items);
+    }
 
-      // Priorytety: +1 seria (maks. 4) i dodatkowe ćwiczenie, jeśli jest czas
-      if (prio.size) {
-        for (const it of items) {
+    // Priorytety: +1 seria (maks. 4) i dodatkowe ćwiczenie, jeśli jest czas
+    if (prio.size) {
+      days.forEach((d, di) => {
+        for (const it of d.items) {
           if (!isPrio(it.slot) || it.sets >= 4) continue;
           it.sets += 1; it.extra = 1;
-          if (estSeconds(items) > budget + 180) { it.sets -= 1; it.extra = 0; }
+          if (estSeconds(d.items) > budget + 180) { it.sets -= 1; it.extra = 0; }
         }
-        for (const k of d.extra.filter(isPrio)) {
-          const it = build(k);
+        for (const k of tpl.days[di].extra.filter(isPrio)) {
+          const it = build(k, useds[di]);
           if (!it) continue;
-          items.push(it);
-          if (estSeconds(items) > budget + 180) { items.pop(); used.delete(it.exId); }
+          d.items.push(it);
+          if (estSeconds(d.items) > budget + 180) { d.items.pop(); useds[di].delete(it.exId); }
         }
-      }
-      items.forEach((it, i) => { it.order = i; });
-      return { key: d.key, name: d.name, focus: d.focus, items, trimmed, estMin: Math.round(estSeconds(items) / 60) + 10 };
+      });
+    }
+    days.forEach(d => {
+      d.items.forEach((it, i) => { it.order = i; });
+      d.estMin = Math.round(estSeconds(d.items) / 60) + 10;
     });
 
     const beginner = p.exp < 2 && !p.forceUL;
-    const cardioDay = tk !== 'ul4' && p.days >= 4;
-    const strengthDays = cardioDay ? 3 : p.days;
     const schedule = { 2: 'np. poniedziałek i czwartek', 3: 'np. poniedziałek, środa, piątek', 4: tk === 'ul4' ? 'np. poniedziałek, wtorek, czwartek, piątek' : 'np. pn, śr, pt siłownia + 1 dzień cardio' }[p.days];
-    return { createdAt: new Date().toISOString(), template: tk, kind: tpl.kind, name: tpl.name, schedule, strengthDays, cardioDay, beginner, days };
+    return { createdAt: new Date().toISOString(), tv: PLAN_VERSION, template: tk, kind: tpl.kind, name: tpl.name, schedule, strengthDays, cardioDay, beginner, days };
   }
 
   function swapItem(item, newExId, p) {
@@ -841,7 +899,7 @@ const Engine = (() => {
   }
 
   return {
-    EX, DB_STEPS, GOALS, GROUPS, TEMPLATES, SLOTS: S, DAY,
+    EX, DB_STEPS, PLAN_VERSION, volumeFloor, GOALS, GROUPS, TEMPLATES, SLOTS: S, DAY,
     isoDay, refWeight, exAllowed, startWeight, increment, heavier, lighter, calibrate, warmupSets, platesPerSide,
     generatePlan, swapItem, adaptationLeft, adaptationActive, deloadCheck, lastEntry, suggestReps, createSession, evaluate,
     e1rm, sessionBestE1, volumeOf, records, detectPRs, weeklySets, planWeeklySets, setTargets, weekStart, weekStats,

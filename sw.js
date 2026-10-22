@@ -1,6 +1,6 @@
 // Wygenerowane przez tools/release.js – nie edytuj ręcznie.
 // Pliki aplikacji i zdjęcia ćwiczeń w pamięci telefonu → działa bez zasięgu (poza filmami).
-const VERSION = 'trening-553809d2f2';
+const VERSION = 'trening-24b41abf4f';
 const FILES = [
  "./",
  "index.html",
@@ -8,14 +8,14 @@ const FILES = [
  "icons/icon-180.png",
  "icons/icon-192.png",
  "icons/icon-512.png",
- "styles.css?v=553809d2f2",
- "js/exercises.js?v=553809d2f2",
- "js/media.js?v=553809d2f2",
- "js/videos.js?v=553809d2f2",
- "js/content.js?v=553809d2f2",
- "js/engine.js?v=553809d2f2",
- "js/data.js?v=553809d2f2",
- "js/app.js?v=553809d2f2",
+ "styles.css?v=24b41abf4f",
+ "js/exercises.js?v=24b41abf4f",
+ "js/media.js?v=24b41abf4f",
+ "js/videos.js?v=24b41abf4f",
+ "js/content.js?v=24b41abf4f",
+ "js/engine.js?v=24b41abf4f",
+ "js/data.js?v=24b41abf4f",
+ "js/app.js?v=24b41abf4f",
  "media/leg_press/0.webp",
  "media/leg_press/1.webp",
  "media/back_squat/0.webp",

@@ -337,7 +337,10 @@
     if (ui.migrated) {
       html += `<div class="note ok"><b>Nowa wersja aplikacji.</b> Plan ułożyłem od nowa według zaleceń (Full Body A/B, zapas powtórzeń, przerwy). Twoje ciężary i historia zostały.
         ${s.profile.parq == null ? '<div class="mt"><button class="btn small" data-a="parq-edit">Uzupełnij ankietę zdrowia</button></div>' : ''}</div>`;
-    } else if (s.profile.parq == null) {
+    } else if (ui.replanned) {
+      html += `<div class="note ok"><b>Plan zaktualizowany.</b> Dołożyłem serie, żeby każda partia mięśni dostawała co najmniej 8 serii tygodniowo (tyle zaleca specyfikacja na start). Ciężary i historia zostały. Szczegóły w zakładce „Plan”.</div>`;
+    }
+    if (!ui.migrated && s.profile.parq == null) {
       html += `<div class="note warn">Uzupełnij krótką ankietę zdrowia (8 pytań). <div class="mt"><button class="btn small" data-a="parq-edit">Wypełnij</button></div></div>`;
     }
     if (s.active) {
@@ -414,6 +417,12 @@
     if (s.plan.days.some(d => d.trimmed.length)) {
       const names = [...new Set(s.plan.days.flatMap(d => d.trimmed))].map(id => EX[id].name);
       html += `<div class="note info small">Żeby zmieścić się w ${p.duration} min, pominąłem: ${esc(names.join(', '))}. Przy dłuższym treningu wrócą do planu.</div>`;
+    }
+    const cov = E.planWeeklySets(s.plan), fl = E.volumeFloor(p);
+    const low = Object.keys(fl).filter(m => (cov[m] || 0) < fl[m]);
+    if (low.length) {
+      html += `<div class="note warn small"><b>Przy ${p.duration} min nie mieści się pełna objętość.</b> Poniżej minimum (${fl.klatka} serii tygodniowo, brzuch 4): ${low.map(m => `${esc(MUSCLES[m].toLowerCase())} ${nf(cov[m] || 0)}`).join(', ')}.
+        ${p.days >= 3 && p.duration < 75 ? 'Pełny plan trwa ok. 65–75 min – możesz zmienić czas treningu w Profilu („Zmień odpowiedzi”).' : p.days < 3 ? 'Przy 2 treningach w tygodniu to normalne – 3 treningi dają pełną objętość.' : ''}</div>`;
     }
     if (p.injuries.length) {
       html += `<div class="note warn"><b>Uwzględniłem dolegliwości:</b> ${p.injuries.map(i => esc(INJURIES.find(x => x.id === i).label.toLowerCase())).join(', ')}. Pominąłem ćwiczenia, które najbardziej obciążają te miejsca. Ćwicz tylko w zakresie bez bólu.</div>`;
@@ -1169,6 +1178,7 @@
     }
     state.active = null;
     ui.migrated = false;
+    if ((state.plan.tv || 1) < E.PLAN_VERSION) { replan(); ui.replanned = true; }
     save(); keepAwake(false);
     ui.tab = 'today';
     render(); window.scrollTo(0, 0);
@@ -1597,6 +1607,9 @@
     try { state = await D.loadState(); } catch (e) { state = null; }
     if (state && state.needsReplan) {
       replan(); delete state.needsReplan; ui.migrated = true; await flush();
+    }
+    if (state && !state.active && (state.plan.tv || 1) < E.PLAN_VERSION) {
+      replan(); ui.replanned = true; await flush();
     }
     if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
     render();

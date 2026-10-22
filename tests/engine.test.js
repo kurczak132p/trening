@@ -33,14 +33,14 @@ check('baza ćwiczeń', () => {
 });
 
 // 2. Plan A ze specyfikacji – dokładnie dla zaczynającego na pełnej siłowni
-check('plan FBW A/B wg specyfikacji', () => {
+check('plan FBW A/B (specyfikacja + dołożone serie)', () => {
   const plan = E.generatePlan({ ...base, duration: 75 });
   assert.strictEqual(plan.template, 'fbw_gym');
   const A = plan.days[0].items.map(i => `${i.exId}:${i.sets}x${i.lo}-${i.hi}`);
-  assert.deepStrictEqual(A, ['goblet_squat:3x6-10', 'db_bench:3x8-12', 'cable_row:3x8-12', 'db_rdl:2x8-12', 'db_lateral_raise:2x12-15', 'plank:2x30-45']);
+  assert.deepStrictEqual(A, ['goblet_squat:3x6-10', 'db_bench:3x8-12', 'cable_row:3x8-12', 'db_rdl:3x8-12', 'db_lateral_raise:2x12-15', 'rope_pushdown:2x10-15', 'plank:2x30-45']);
   const B = plan.days[1].items.map(i => `${i.exId}:${i.sets}x${i.lo}-${i.hi}`);
-  assert.deepStrictEqual(B, ['bb_rdl:3x6-10', 'lat_pulldown:3x8-12', 'db_shoulder_press:3x8-12', 'walking_lunge:2x8-12', 'db_curl:2x10-15', 'rope_pushdown:2x10-15', 'pallof_press:2x10-12']);
-  assert.strictEqual(plan.days[1].items[4].ss, 'R'); assert.strictEqual(plan.days[1].items[5].ss, 'R');
+  assert.deepStrictEqual(B, ['bb_rdl:3x6-10', 'lat_pulldown:3x8-12', 'db_shoulder_press:3x8-12', 'incline_db_press:3x8-12', 'walking_lunge:3x8-12', 'db_curl:3x10-15', 'pallof_press:2x10-12']);
+  assert.strictEqual(plan.days[0].items[4].ss, 'S'); assert.strictEqual(plan.days[0].items[5].ss, 'S');
   assert.deepStrictEqual(plan.days[0].items[0].rir, [2, 3]);
   // „trochę ćwiczył” → przysiad ze sztangą
   assert.strictEqual(E.generatePlan({ ...base, exp: 1 }).days[0].items[0].exId, 'back_squat');
@@ -54,8 +54,19 @@ check('wybór planu: dom, 4 dni, góra/dół', () => {
   assert.strictEqual(ul.template, 'ul4'); assert.strictEqual(ul.days.length, 4); assert.strictEqual(ul.cardioDay, false);
   assert.strictEqual(E.generatePlan({ ...base, days: 4, forceUL: true }).template, 'ul4');
   const home = E.generatePlan({ ...base, location: 'dom', equipment: HOME, duration: 75 });
-  assert.deepStrictEqual(home.days[0].items.map(i => i.exId), ['goblet_squat', 'push_up_incline', 'db_row', 'db_hip_thrust', 'band_lateral_raise', 'dead_bug']);
-  assert.deepStrictEqual(home.days[1].items.map(i => i.exId), ['bulgarian_split_squat', 'db_press_standing', 'band_pullup', 'db_rdl', 'db_curl', 'diamond_push_up', 'side_plank']);
+  assert.deepStrictEqual(home.days[0].items.map(i => i.exId), ['goblet_squat', 'push_up_incline', 'db_row', 'db_rdl', 'band_lateral_raise', 'dead_bug']);
+  assert.deepStrictEqual(home.days[1].items.map(i => i.exId), ['bulgarian_split_squat', 'db_press_standing', 'band_pullup', 'db_rdl', 'push_up_incline', 'db_curl', 'diamond_push_up', 'side_plank']);
+});
+
+// 2b. Objętość: przy 3 treningach i 75 min każda partia ≥ 8 serii tygodniowo (brzuch ≥ 4)
+check('serie tygodniowo ≥ 8 przy 75 min', () => {
+  for (const [location, equipment] of [['silownia', GYM], ['dom', HOME]]) for (const exp of [0, 1]) for (const goal of ['redukcja', 'masa', 'sila', 'zdrowie']) {
+    const plan = E.generatePlan({ ...base, location, equipment, exp, goal, duration: 75 });
+    const w = E.planWeeklySets(plan);
+    for (const m of ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworoglowe', 'posladki', 'dwuglowe']) assert((w[m] || 0) >= 8, `${location}/${goal}/exp${exp}: ${m} = ${w[m]}`);
+    assert((w.brzuch || 0) >= 4, location + ': brzuch');
+    plan.days.forEach(d => assert(d.estMin <= 75, `${location}: ${d.name} ${d.estMin} min`));
+  }
 });
 
 // 3. Wszystkie kombinacje → plan bez błędów i zgodny z ograniczeniami
@@ -191,7 +202,7 @@ check('serie na partię', () => {
   const plan = E.generatePlan({ ...base, duration: 75 });
   const ws = E.planWeeklySets(plan);
   assert.strictEqual(ws.plecy, 9);
-  assert.strictEqual(ws.czworoglowe, 7.5);
+  assert.strictEqual(ws.czworoglowe, 9);
   const now = Date.now();
   const log = [{ date: new Date(now - DAY).toISOString(), entries: [{ exId: 'db_bench', sets: [{}, {}, {}] }, { exId: 'lat_pulldown', sets: [{}, {}] }] }];
   const w = E.weeklySets(log, now - 7 * DAY, now);
@@ -208,7 +219,7 @@ check('deload', () => {
   assert.strictEqual(E.deloadCheck(tired, now).due, true, 'sen < 6 h ×3');
   // sesja w deloadzie: połowa serii, RIR 3–4
   const s = E.createSession({ ...state, prog: {}, deload: { active: true, left: 3 } }, 0);
-  assert.strictEqual(s.entries[0].sets.length, 2); assert.deepStrictEqual(s.entries[0].rir, [3, 4]);
+  assert.strictEqual(s.entries[0].sets.length, Math.ceil(plan.days[0].items[0].sets / 2)); assert.deepStrictEqual(s.entries[0].rir, [3, 4]);
 });
 
 check('sesja: rozgrzewka tylko w pierwszym, okres wdrożenia', () => {
